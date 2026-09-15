@@ -39,30 +39,29 @@ Computer
 model Timetable {
   id Int @id @default(autoincrement())
 
-  teacherId Int
+  teacherId   Int
   classRoomId Int
 
-  title String
-  date DateTime
-
+  title     String
+  date      DateTime
   startTime String
-  endTime String
+  endTime   String
 
-  
-  status TimetableStatus @default(SCHEDULED)
-  subject TimeTableSubjects@default(Physics)
-
-  notes String?
+  status  TimetableStatus @default(SCHEDULED)
+  subject TimeTableSubjects @default(Physics)
+  notes   String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  
+  teacher   Teacher   @relation(fields: [teacherId], references: [id])
+  classRoom ClassRoom@relation(fields: [classRoomId], references: [id])
 
   @@index([teacherId])
   @@index([classRoomId])
   @@index([date])
 }
+
 model Teacher {
   id Int @id @default(autoincrement())
 
@@ -72,6 +71,7 @@ model Teacher {
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+    timetables Timetable[]
 
 }
 
@@ -84,6 +84,7 @@ model ClassRoom {
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+    timetables Timetable[]
 
 }
 

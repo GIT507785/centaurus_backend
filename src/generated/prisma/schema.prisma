@@ -42,19 +42,20 @@ model Timetable {
   teacherId   Int
   classRoomId Int
 
-  title String
-  date  DateTime
-
+  title     String
+  date      DateTime
   startTime String
   endTime   String
 
   status  TimetableStatus   @default(SCHEDULED)
   subject TimeTableSubjects @default(Physics)
-
-  notes String?
+  notes   String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  teacher   Teacher   @relation(fields: [teacherId], references: [id])
+  classRoom ClassRoom @relation(fields: [classRoomId], references: [id])
 
   @@index([teacherId])
   @@index([classRoomId])
@@ -67,8 +68,9 @@ model Teacher {
   name  String
   email String @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  timetables Timetable[]
 }
 
 model ClassRoom {
@@ -77,8 +79,9 @@ model ClassRoom {
   name    String
   section String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  timetables Timetable[]
 }
 
 model announcement {

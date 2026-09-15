@@ -22,4 +22,3 @@ app.get("/test", (req, res) => {
 app.listen(PORT, () => {
     console.log(`server is running on http://localhost:${PORT}`);
 });
-//# sourceMappingURL=server.js.map

@@ -1846,6 +1846,67 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type TeacherCountOutputType
+   */
+
+  export type TeacherCountOutputType = {
+    timetables: number
+  }
+
+  export type TeacherCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    timetables?: boolean | TeacherCountOutputTypeCountTimetablesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeacherCountOutputType
+     */
+    select?: TeacherCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeCountTimetablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TimetableWhereInput
+  }
+
+
+  /**
+   * Count Type ClassRoomCountOutputType
+   */
+
+  export type ClassRoomCountOutputType = {
+    timetables: number
+  }
+
+  export type ClassRoomCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    timetables?: boolean | ClassRoomCountOutputTypeCountTimetablesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ClassRoomCountOutputType without action
+   */
+  export type ClassRoomCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassRoomCountOutputType
+     */
+    select?: ClassRoomCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ClassRoomCountOutputType without action
+   */
+  export type ClassRoomCountOutputTypeCountTimetablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TimetableWhereInput
+  }
+
 
   /**
    * Models
@@ -4155,6 +4216,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    classRoom?: boolean | ClassRoomDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["timetable"]>
 
   export type TimetableSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4170,6 +4233,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    classRoom?: boolean | ClassRoomDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["timetable"]>
 
   export type TimetableSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4185,6 +4250,8 @@ export namespace Prisma {
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    classRoom?: boolean | ClassRoomDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["timetable"]>
 
   export type TimetableSelectScalar = {
@@ -4203,10 +4270,25 @@ export namespace Prisma {
   }
 
   export type TimetableOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "classRoomId" | "title" | "date" | "startTime" | "endTime" | "status" | "subject" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["timetable"]>
+  export type TimetableInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    classRoom?: boolean | ClassRoomDefaultArgs<ExtArgs>
+  }
+  export type TimetableIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    classRoom?: boolean | ClassRoomDefaultArgs<ExtArgs>
+  }
+  export type TimetableIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    classRoom?: boolean | ClassRoomDefaultArgs<ExtArgs>
+  }
 
   export type $TimetablePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Timetable"
-    objects: {}
+    objects: {
+      teacher: Prisma.$TeacherPayload<ExtArgs>
+      classRoom: Prisma.$ClassRoomPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       teacherId: number
@@ -4614,6 +4696,8 @@ export namespace Prisma {
    */
   export interface Prisma__TimetableClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    classRoom<T extends ClassRoomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassRoomDefaultArgs<ExtArgs>>): Prisma__ClassRoomClient<$Result.GetResult<Prisma.$ClassRoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4672,6 +4756,10 @@ export namespace Prisma {
      */
     omit?: TimetableOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
+    /**
      * Filter, which Timetable to fetch.
      */
     where: TimetableWhereUniqueInput
@@ -4690,6 +4778,10 @@ export namespace Prisma {
      */
     omit?: TimetableOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
+    /**
      * Filter, which Timetable to fetch.
      */
     where: TimetableWhereUniqueInput
@@ -4707,6 +4799,10 @@ export namespace Prisma {
      * Omit specific fields from the Timetable
      */
     omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
     /**
      * Filter, which Timetable to fetch.
      */
@@ -4756,6 +4852,10 @@ export namespace Prisma {
      */
     omit?: TimetableOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
+    /**
      * Filter, which Timetable to fetch.
      */
     where?: TimetableWhereInput
@@ -4803,6 +4903,10 @@ export namespace Prisma {
      * Omit specific fields from the Timetable
      */
     omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
     /**
      * Filter, which Timetables to fetch.
      */
@@ -4852,6 +4956,10 @@ export namespace Prisma {
      */
     omit?: TimetableOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
+    /**
      * The data needed to create a Timetable.
      */
     data: XOR<TimetableCreateInput, TimetableUncheckedCreateInput>
@@ -4885,6 +4993,10 @@ export namespace Prisma {
      */
     data: TimetableCreateManyInput | TimetableCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4899,6 +5011,10 @@ export namespace Prisma {
      * Omit specific fields from the Timetable
      */
     omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
     /**
      * The data needed to update a Timetable.
      */
@@ -4951,6 +5067,10 @@ export namespace Prisma {
      * Limit how many Timetables to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4965,6 +5085,10 @@ export namespace Prisma {
      * Omit specific fields from the Timetable
      */
     omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
     /**
      * The filter to search for the Timetable to update in case it exists.
      */
@@ -4991,6 +5115,10 @@ export namespace Prisma {
      * Omit specific fields from the Timetable
      */
     omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
     /**
      * Filter which Timetable to delete.
      */
@@ -5023,6 +5151,10 @@ export namespace Prisma {
      * Omit specific fields from the Timetable
      */
     omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
   }
 
 
@@ -5224,6 +5356,8 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    timetables?: boolean | Teacher$timetablesArgs<ExtArgs>
+    _count?: boolean | TeacherCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacher"]>
 
   export type TeacherSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5251,10 +5385,18 @@ export namespace Prisma {
   }
 
   export type TeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["teacher"]>
+  export type TeacherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    timetables?: boolean | Teacher$timetablesArgs<ExtArgs>
+    _count?: boolean | TeacherCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TeacherIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TeacherIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $TeacherPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Teacher"
-    objects: {}
+    objects: {
+      timetables: Prisma.$TimetablePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -5655,6 +5797,7 @@ export namespace Prisma {
    */
   export interface Prisma__TeacherClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    timetables<T extends Teacher$timetablesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$timetablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimetablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5706,6 +5849,10 @@ export namespace Prisma {
      */
     omit?: TeacherOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    /**
      * Filter, which Teacher to fetch.
      */
     where: TeacherWhereUniqueInput
@@ -5724,6 +5871,10 @@ export namespace Prisma {
      */
     omit?: TeacherOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    /**
      * Filter, which Teacher to fetch.
      */
     where: TeacherWhereUniqueInput
@@ -5741,6 +5892,10 @@ export namespace Prisma {
      * Omit specific fields from the Teacher
      */
     omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
     /**
      * Filter, which Teacher to fetch.
      */
@@ -5790,6 +5945,10 @@ export namespace Prisma {
      */
     omit?: TeacherOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    /**
      * Filter, which Teacher to fetch.
      */
     where?: TeacherWhereInput
@@ -5837,6 +5996,10 @@ export namespace Prisma {
      * Omit specific fields from the Teacher
      */
     omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
     /**
      * Filter, which Teachers to fetch.
      */
@@ -5886,6 +6049,10 @@ export namespace Prisma {
      */
     omit?: TeacherOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    /**
      * The data needed to create a Teacher.
      */
     data: XOR<TeacherCreateInput, TeacherUncheckedCreateInput>
@@ -5933,6 +6100,10 @@ export namespace Prisma {
      * Omit specific fields from the Teacher
      */
     omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
     /**
      * The data needed to update a Teacher.
      */
@@ -6000,6 +6171,10 @@ export namespace Prisma {
      */
     omit?: TeacherOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    /**
      * The filter to search for the Teacher to update in case it exists.
      */
     where: TeacherWhereUniqueInput
@@ -6026,6 +6201,10 @@ export namespace Prisma {
      */
     omit?: TeacherOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    /**
      * Filter which Teacher to delete.
      */
     where: TeacherWhereUniqueInput
@@ -6046,6 +6225,30 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.timetables
+   */
+  export type Teacher$timetablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Timetable
+     */
+    select?: TimetableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Timetable
+     */
+    omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
+    where?: TimetableWhereInput
+    orderBy?: TimetableOrderByWithRelationInput | TimetableOrderByWithRelationInput[]
+    cursor?: TimetableWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TimetableScalarFieldEnum | TimetableScalarFieldEnum[]
+  }
+
+  /**
    * Teacher without action
    */
   export type TeacherDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6057,6 +6260,10 @@ export namespace Prisma {
      * Omit specific fields from the Teacher
      */
     omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
   }
 
 
@@ -6258,6 +6465,8 @@ export namespace Prisma {
     section?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    timetables?: boolean | ClassRoom$timetablesArgs<ExtArgs>
+    _count?: boolean | ClassRoomCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classRoom"]>
 
   export type ClassRoomSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6285,10 +6494,18 @@ export namespace Prisma {
   }
 
   export type ClassRoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "section" | "createdAt" | "updatedAt", ExtArgs["result"]["classRoom"]>
+  export type ClassRoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    timetables?: boolean | ClassRoom$timetablesArgs<ExtArgs>
+    _count?: boolean | ClassRoomCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ClassRoomIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ClassRoomIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $ClassRoomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ClassRoom"
-    objects: {}
+    objects: {
+      timetables: Prisma.$TimetablePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -6689,6 +6906,7 @@ export namespace Prisma {
    */
   export interface Prisma__ClassRoomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    timetables<T extends ClassRoom$timetablesArgs<ExtArgs> = {}>(args?: Subset<T, ClassRoom$timetablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimetablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6740,6 +6958,10 @@ export namespace Prisma {
      */
     omit?: ClassRoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
+    /**
      * Filter, which ClassRoom to fetch.
      */
     where: ClassRoomWhereUniqueInput
@@ -6758,6 +6980,10 @@ export namespace Prisma {
      */
     omit?: ClassRoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
+    /**
      * Filter, which ClassRoom to fetch.
      */
     where: ClassRoomWhereUniqueInput
@@ -6775,6 +7001,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassRoom
      */
     omit?: ClassRoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
     /**
      * Filter, which ClassRoom to fetch.
      */
@@ -6824,6 +7054,10 @@ export namespace Prisma {
      */
     omit?: ClassRoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
+    /**
      * Filter, which ClassRoom to fetch.
      */
     where?: ClassRoomWhereInput
@@ -6871,6 +7105,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassRoom
      */
     omit?: ClassRoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
     /**
      * Filter, which ClassRooms to fetch.
      */
@@ -6920,6 +7158,10 @@ export namespace Prisma {
      */
     omit?: ClassRoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
+    /**
      * The data needed to create a ClassRoom.
      */
     data: XOR<ClassRoomCreateInput, ClassRoomUncheckedCreateInput>
@@ -6967,6 +7209,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassRoom
      */
     omit?: ClassRoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
     /**
      * The data needed to update a ClassRoom.
      */
@@ -7034,6 +7280,10 @@ export namespace Prisma {
      */
     omit?: ClassRoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
+    /**
      * The filter to search for the ClassRoom to update in case it exists.
      */
     where: ClassRoomWhereUniqueInput
@@ -7060,6 +7310,10 @@ export namespace Prisma {
      */
     omit?: ClassRoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
+    /**
      * Filter which ClassRoom to delete.
      */
     where: ClassRoomWhereUniqueInput
@@ -7080,6 +7334,30 @@ export namespace Prisma {
   }
 
   /**
+   * ClassRoom.timetables
+   */
+  export type ClassRoom$timetablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Timetable
+     */
+    select?: TimetableSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Timetable
+     */
+    omit?: TimetableOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TimetableInclude<ExtArgs> | null
+    where?: TimetableWhereInput
+    orderBy?: TimetableOrderByWithRelationInput | TimetableOrderByWithRelationInput[]
+    cursor?: TimetableWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TimetableScalarFieldEnum | TimetableScalarFieldEnum[]
+  }
+
+  /**
    * ClassRoom without action
    */
   export type ClassRoomDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7091,6 +7369,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassRoom
      */
     omit?: ClassRoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassRoomInclude<ExtArgs> | null
   }
 
 
@@ -13940,6 +14222,8 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Timetable"> | string | null
     createdAt?: DateTimeFilter<"Timetable"> | Date | string
     updatedAt?: DateTimeFilter<"Timetable"> | Date | string
+    teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    classRoom?: XOR<ClassRoomScalarRelationFilter, ClassRoomWhereInput>
   }
 
   export type TimetableOrderByWithRelationInput = {
@@ -13955,6 +14239,8 @@ export namespace Prisma {
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    teacher?: TeacherOrderByWithRelationInput
+    classRoom?: ClassRoomOrderByWithRelationInput
   }
 
   export type TimetableWhereUniqueInput = Prisma.AtLeast<{
@@ -13973,6 +14259,8 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Timetable"> | string | null
     createdAt?: DateTimeFilter<"Timetable"> | Date | string
     updatedAt?: DateTimeFilter<"Timetable"> | Date | string
+    teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    classRoom?: XOR<ClassRoomScalarRelationFilter, ClassRoomWhereInput>
   }, "id">
 
   export type TimetableOrderByWithAggregationInput = {
@@ -14022,6 +14310,7 @@ export namespace Prisma {
     email?: StringFilter<"Teacher"> | string
     createdAt?: DateTimeFilter<"Teacher"> | Date | string
     updatedAt?: DateTimeFilter<"Teacher"> | Date | string
+    timetables?: TimetableListRelationFilter
   }
 
   export type TeacherOrderByWithRelationInput = {
@@ -14030,6 +14319,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timetables?: TimetableOrderByRelationAggregateInput
   }
 
   export type TeacherWhereUniqueInput = Prisma.AtLeast<{
@@ -14041,6 +14331,7 @@ export namespace Prisma {
     name?: StringFilter<"Teacher"> | string
     createdAt?: DateTimeFilter<"Teacher"> | Date | string
     updatedAt?: DateTimeFilter<"Teacher"> | Date | string
+    timetables?: TimetableListRelationFilter
   }, "id" | "email">
 
   export type TeacherOrderByWithAggregationInput = {
@@ -14076,6 +14367,7 @@ export namespace Prisma {
     section?: StringNullableFilter<"ClassRoom"> | string | null
     createdAt?: DateTimeFilter<"ClassRoom"> | Date | string
     updatedAt?: DateTimeFilter<"ClassRoom"> | Date | string
+    timetables?: TimetableListRelationFilter
   }
 
   export type ClassRoomOrderByWithRelationInput = {
@@ -14084,6 +14376,7 @@ export namespace Prisma {
     section?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timetables?: TimetableOrderByRelationAggregateInput
   }
 
   export type ClassRoomWhereUniqueInput = Prisma.AtLeast<{
@@ -14095,6 +14388,7 @@ export namespace Prisma {
     section?: StringNullableFilter<"ClassRoom"> | string | null
     createdAt?: DateTimeFilter<"ClassRoom"> | Date | string
     updatedAt?: DateTimeFilter<"ClassRoom"> | Date | string
+    timetables?: TimetableListRelationFilter
   }, "id">
 
   export type ClassRoomOrderByWithAggregationInput = {
@@ -14633,8 +14927,6 @@ export namespace Prisma {
   }
 
   export type TimetableCreateInput = {
-    teacherId: number
-    classRoomId: number
     title: string
     date: Date | string
     startTime: string
@@ -14644,6 +14936,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    teacher: TeacherCreateNestedOneWithoutTimetablesInput
+    classRoom: ClassRoomCreateNestedOneWithoutTimetablesInput
   }
 
   export type TimetableUncheckedCreateInput = {
@@ -14662,8 +14956,6 @@ export namespace Prisma {
   }
 
   export type TimetableUpdateInput = {
-    teacherId?: IntFieldUpdateOperationsInput | number
-    classRoomId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
@@ -14673,6 +14965,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teacher?: TeacherUpdateOneRequiredWithoutTimetablesNestedInput
+    classRoom?: ClassRoomUpdateOneRequiredWithoutTimetablesNestedInput
   }
 
   export type TimetableUncheckedUpdateInput = {
@@ -14706,8 +15000,6 @@ export namespace Prisma {
   }
 
   export type TimetableUpdateManyMutationInput = {
-    teacherId?: IntFieldUpdateOperationsInput | number
-    classRoomId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
@@ -14739,6 +15031,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    timetables?: TimetableCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUncheckedCreateInput = {
@@ -14747,6 +15040,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    timetables?: TimetableUncheckedCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUpdateInput = {
@@ -14754,6 +15048,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timetables?: TimetableUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherUncheckedUpdateInput = {
@@ -14762,6 +15057,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timetables?: TimetableUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherCreateManyInput = {
@@ -14792,6 +15088,7 @@ export namespace Prisma {
     section?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    timetables?: TimetableCreateNestedManyWithoutClassRoomInput
   }
 
   export type ClassRoomUncheckedCreateInput = {
@@ -14800,6 +15097,7 @@ export namespace Prisma {
     section?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    timetables?: TimetableUncheckedCreateNestedManyWithoutClassRoomInput
   }
 
   export type ClassRoomUpdateInput = {
@@ -14807,6 +15105,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timetables?: TimetableUpdateManyWithoutClassRoomNestedInput
   }
 
   export type ClassRoomUncheckedUpdateInput = {
@@ -14815,6 +15114,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timetables?: TimetableUncheckedUpdateManyWithoutClassRoomNestedInput
   }
 
   export type ClassRoomCreateManyInput = {
@@ -15486,6 +15786,16 @@ export namespace Prisma {
     not?: NestedEnumTimeTableSubjectsFilter<$PrismaModel> | $Enums.TimeTableSubjects
   }
 
+  export type TeacherScalarRelationFilter = {
+    is?: TeacherWhereInput
+    isNot?: TeacherWhereInput
+  }
+
+  export type ClassRoomScalarRelationFilter = {
+    is?: ClassRoomWhereInput
+    isNot?: ClassRoomWhereInput
+  }
+
   export type TimetableCountOrderByAggregateInput = {
     id?: SortOrder
     teacherId?: SortOrder
@@ -15561,6 +15871,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumTimeTableSubjectsFilter<$PrismaModel>
     _max?: NestedEnumTimeTableSubjectsFilter<$PrismaModel>
+  }
+
+  export type TimetableListRelationFilter = {
+    every?: TimetableWhereInput
+    some?: TimetableWhereInput
+    none?: TimetableWhereInput
+  }
+
+  export type TimetableOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type TeacherCountOrderByAggregateInput = {
@@ -15917,12 +16237,124 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type TeacherCreateNestedOneWithoutTimetablesInput = {
+    create?: XOR<TeacherCreateWithoutTimetablesInput, TeacherUncheckedCreateWithoutTimetablesInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutTimetablesInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type ClassRoomCreateNestedOneWithoutTimetablesInput = {
+    create?: XOR<ClassRoomCreateWithoutTimetablesInput, ClassRoomUncheckedCreateWithoutTimetablesInput>
+    connectOrCreate?: ClassRoomCreateOrConnectWithoutTimetablesInput
+    connect?: ClassRoomWhereUniqueInput
+  }
+
   export type EnumTimetableStatusFieldUpdateOperationsInput = {
     set?: $Enums.TimetableStatus
   }
 
   export type EnumTimeTableSubjectsFieldUpdateOperationsInput = {
     set?: $Enums.TimeTableSubjects
+  }
+
+  export type TeacherUpdateOneRequiredWithoutTimetablesNestedInput = {
+    create?: XOR<TeacherCreateWithoutTimetablesInput, TeacherUncheckedCreateWithoutTimetablesInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutTimetablesInput
+    upsert?: TeacherUpsertWithoutTimetablesInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutTimetablesInput, TeacherUpdateWithoutTimetablesInput>, TeacherUncheckedUpdateWithoutTimetablesInput>
+  }
+
+  export type ClassRoomUpdateOneRequiredWithoutTimetablesNestedInput = {
+    create?: XOR<ClassRoomCreateWithoutTimetablesInput, ClassRoomUncheckedCreateWithoutTimetablesInput>
+    connectOrCreate?: ClassRoomCreateOrConnectWithoutTimetablesInput
+    upsert?: ClassRoomUpsertWithoutTimetablesInput
+    connect?: ClassRoomWhereUniqueInput
+    update?: XOR<XOR<ClassRoomUpdateToOneWithWhereWithoutTimetablesInput, ClassRoomUpdateWithoutTimetablesInput>, ClassRoomUncheckedUpdateWithoutTimetablesInput>
+  }
+
+  export type TimetableCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TimetableCreateWithoutTeacherInput, TimetableUncheckedCreateWithoutTeacherInput> | TimetableCreateWithoutTeacherInput[] | TimetableUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutTeacherInput | TimetableCreateOrConnectWithoutTeacherInput[]
+    createMany?: TimetableCreateManyTeacherInputEnvelope
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+  }
+
+  export type TimetableUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TimetableCreateWithoutTeacherInput, TimetableUncheckedCreateWithoutTeacherInput> | TimetableCreateWithoutTeacherInput[] | TimetableUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutTeacherInput | TimetableCreateOrConnectWithoutTeacherInput[]
+    createMany?: TimetableCreateManyTeacherInputEnvelope
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+  }
+
+  export type TimetableUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TimetableCreateWithoutTeacherInput, TimetableUncheckedCreateWithoutTeacherInput> | TimetableCreateWithoutTeacherInput[] | TimetableUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutTeacherInput | TimetableCreateOrConnectWithoutTeacherInput[]
+    upsert?: TimetableUpsertWithWhereUniqueWithoutTeacherInput | TimetableUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TimetableCreateManyTeacherInputEnvelope
+    set?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    disconnect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    delete?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    update?: TimetableUpdateWithWhereUniqueWithoutTeacherInput | TimetableUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TimetableUpdateManyWithWhereWithoutTeacherInput | TimetableUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TimetableScalarWhereInput | TimetableScalarWhereInput[]
+  }
+
+  export type TimetableUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TimetableCreateWithoutTeacherInput, TimetableUncheckedCreateWithoutTeacherInput> | TimetableCreateWithoutTeacherInput[] | TimetableUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutTeacherInput | TimetableCreateOrConnectWithoutTeacherInput[]
+    upsert?: TimetableUpsertWithWhereUniqueWithoutTeacherInput | TimetableUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TimetableCreateManyTeacherInputEnvelope
+    set?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    disconnect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    delete?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    update?: TimetableUpdateWithWhereUniqueWithoutTeacherInput | TimetableUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TimetableUpdateManyWithWhereWithoutTeacherInput | TimetableUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TimetableScalarWhereInput | TimetableScalarWhereInput[]
+  }
+
+  export type TimetableCreateNestedManyWithoutClassRoomInput = {
+    create?: XOR<TimetableCreateWithoutClassRoomInput, TimetableUncheckedCreateWithoutClassRoomInput> | TimetableCreateWithoutClassRoomInput[] | TimetableUncheckedCreateWithoutClassRoomInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutClassRoomInput | TimetableCreateOrConnectWithoutClassRoomInput[]
+    createMany?: TimetableCreateManyClassRoomInputEnvelope
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+  }
+
+  export type TimetableUncheckedCreateNestedManyWithoutClassRoomInput = {
+    create?: XOR<TimetableCreateWithoutClassRoomInput, TimetableUncheckedCreateWithoutClassRoomInput> | TimetableCreateWithoutClassRoomInput[] | TimetableUncheckedCreateWithoutClassRoomInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutClassRoomInput | TimetableCreateOrConnectWithoutClassRoomInput[]
+    createMany?: TimetableCreateManyClassRoomInputEnvelope
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+  }
+
+  export type TimetableUpdateManyWithoutClassRoomNestedInput = {
+    create?: XOR<TimetableCreateWithoutClassRoomInput, TimetableUncheckedCreateWithoutClassRoomInput> | TimetableCreateWithoutClassRoomInput[] | TimetableUncheckedCreateWithoutClassRoomInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutClassRoomInput | TimetableCreateOrConnectWithoutClassRoomInput[]
+    upsert?: TimetableUpsertWithWhereUniqueWithoutClassRoomInput | TimetableUpsertWithWhereUniqueWithoutClassRoomInput[]
+    createMany?: TimetableCreateManyClassRoomInputEnvelope
+    set?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    disconnect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    delete?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    update?: TimetableUpdateWithWhereUniqueWithoutClassRoomInput | TimetableUpdateWithWhereUniqueWithoutClassRoomInput[]
+    updateMany?: TimetableUpdateManyWithWhereWithoutClassRoomInput | TimetableUpdateManyWithWhereWithoutClassRoomInput[]
+    deleteMany?: TimetableScalarWhereInput | TimetableScalarWhereInput[]
+  }
+
+  export type TimetableUncheckedUpdateManyWithoutClassRoomNestedInput = {
+    create?: XOR<TimetableCreateWithoutClassRoomInput, TimetableUncheckedCreateWithoutClassRoomInput> | TimetableCreateWithoutClassRoomInput[] | TimetableUncheckedCreateWithoutClassRoomInput[]
+    connectOrCreate?: TimetableCreateOrConnectWithoutClassRoomInput | TimetableCreateOrConnectWithoutClassRoomInput[]
+    upsert?: TimetableUpsertWithWhereUniqueWithoutClassRoomInput | TimetableUpsertWithWhereUniqueWithoutClassRoomInput[]
+    createMany?: TimetableCreateManyClassRoomInputEnvelope
+    set?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    disconnect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    delete?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    connect?: TimetableWhereUniqueInput | TimetableWhereUniqueInput[]
+    update?: TimetableUpdateWithWhereUniqueWithoutClassRoomInput | TimetableUpdateWithWhereUniqueWithoutClassRoomInput[]
+    updateMany?: TimetableUpdateManyWithWhereWithoutClassRoomInput | TimetableUpdateManyWithWhereWithoutClassRoomInput[]
+    deleteMany?: TimetableScalarWhereInput | TimetableScalarWhereInput[]
   }
 
   export type EnumoccuptionFieldUpdateOperationsInput = {
@@ -16132,6 +16564,332 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumoccuptionFilter<$PrismaModel>
     _max?: NestedEnumoccuptionFilter<$PrismaModel>
+  }
+
+  export type TeacherCreateWithoutTimetablesInput = {
+    name: string
+    email: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeacherUncheckedCreateWithoutTimetablesInput = {
+    id?: number
+    name: string
+    email: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeacherCreateOrConnectWithoutTimetablesInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutTimetablesInput, TeacherUncheckedCreateWithoutTimetablesInput>
+  }
+
+  export type ClassRoomCreateWithoutTimetablesInput = {
+    name: string
+    section?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClassRoomUncheckedCreateWithoutTimetablesInput = {
+    id?: number
+    name: string
+    section?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ClassRoomCreateOrConnectWithoutTimetablesInput = {
+    where: ClassRoomWhereUniqueInput
+    create: XOR<ClassRoomCreateWithoutTimetablesInput, ClassRoomUncheckedCreateWithoutTimetablesInput>
+  }
+
+  export type TeacherUpsertWithoutTimetablesInput = {
+    update: XOR<TeacherUpdateWithoutTimetablesInput, TeacherUncheckedUpdateWithoutTimetablesInput>
+    create: XOR<TeacherCreateWithoutTimetablesInput, TeacherUncheckedCreateWithoutTimetablesInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutTimetablesInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutTimetablesInput, TeacherUncheckedUpdateWithoutTimetablesInput>
+  }
+
+  export type TeacherUpdateWithoutTimetablesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TeacherUncheckedUpdateWithoutTimetablesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClassRoomUpsertWithoutTimetablesInput = {
+    update: XOR<ClassRoomUpdateWithoutTimetablesInput, ClassRoomUncheckedUpdateWithoutTimetablesInput>
+    create: XOR<ClassRoomCreateWithoutTimetablesInput, ClassRoomUncheckedCreateWithoutTimetablesInput>
+    where?: ClassRoomWhereInput
+  }
+
+  export type ClassRoomUpdateToOneWithWhereWithoutTimetablesInput = {
+    where?: ClassRoomWhereInput
+    data: XOR<ClassRoomUpdateWithoutTimetablesInput, ClassRoomUncheckedUpdateWithoutTimetablesInput>
+  }
+
+  export type ClassRoomUpdateWithoutTimetablesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClassRoomUncheckedUpdateWithoutTimetablesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimetableCreateWithoutTeacherInput = {
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    status?: $Enums.TimetableStatus
+    subject?: $Enums.TimeTableSubjects
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    classRoom: ClassRoomCreateNestedOneWithoutTimetablesInput
+  }
+
+  export type TimetableUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    classRoomId: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    status?: $Enums.TimetableStatus
+    subject?: $Enums.TimeTableSubjects
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TimetableCreateOrConnectWithoutTeacherInput = {
+    where: TimetableWhereUniqueInput
+    create: XOR<TimetableCreateWithoutTeacherInput, TimetableUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TimetableCreateManyTeacherInputEnvelope = {
+    data: TimetableCreateManyTeacherInput | TimetableCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TimetableUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: TimetableWhereUniqueInput
+    update: XOR<TimetableUpdateWithoutTeacherInput, TimetableUncheckedUpdateWithoutTeacherInput>
+    create: XOR<TimetableCreateWithoutTeacherInput, TimetableUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TimetableUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: TimetableWhereUniqueInput
+    data: XOR<TimetableUpdateWithoutTeacherInput, TimetableUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type TimetableUpdateManyWithWhereWithoutTeacherInput = {
+    where: TimetableScalarWhereInput
+    data: XOR<TimetableUpdateManyMutationInput, TimetableUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type TimetableScalarWhereInput = {
+    AND?: TimetableScalarWhereInput | TimetableScalarWhereInput[]
+    OR?: TimetableScalarWhereInput[]
+    NOT?: TimetableScalarWhereInput | TimetableScalarWhereInput[]
+    id?: IntFilter<"Timetable"> | number
+    teacherId?: IntFilter<"Timetable"> | number
+    classRoomId?: IntFilter<"Timetable"> | number
+    title?: StringFilter<"Timetable"> | string
+    date?: DateTimeFilter<"Timetable"> | Date | string
+    startTime?: StringFilter<"Timetable"> | string
+    endTime?: StringFilter<"Timetable"> | string
+    status?: EnumTimetableStatusFilter<"Timetable"> | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFilter<"Timetable"> | $Enums.TimeTableSubjects
+    notes?: StringNullableFilter<"Timetable"> | string | null
+    createdAt?: DateTimeFilter<"Timetable"> | Date | string
+    updatedAt?: DateTimeFilter<"Timetable"> | Date | string
+  }
+
+  export type TimetableCreateWithoutClassRoomInput = {
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    status?: $Enums.TimetableStatus
+    subject?: $Enums.TimeTableSubjects
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    teacher: TeacherCreateNestedOneWithoutTimetablesInput
+  }
+
+  export type TimetableUncheckedCreateWithoutClassRoomInput = {
+    id?: number
+    teacherId: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    status?: $Enums.TimetableStatus
+    subject?: $Enums.TimeTableSubjects
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TimetableCreateOrConnectWithoutClassRoomInput = {
+    where: TimetableWhereUniqueInput
+    create: XOR<TimetableCreateWithoutClassRoomInput, TimetableUncheckedCreateWithoutClassRoomInput>
+  }
+
+  export type TimetableCreateManyClassRoomInputEnvelope = {
+    data: TimetableCreateManyClassRoomInput | TimetableCreateManyClassRoomInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TimetableUpsertWithWhereUniqueWithoutClassRoomInput = {
+    where: TimetableWhereUniqueInput
+    update: XOR<TimetableUpdateWithoutClassRoomInput, TimetableUncheckedUpdateWithoutClassRoomInput>
+    create: XOR<TimetableCreateWithoutClassRoomInput, TimetableUncheckedCreateWithoutClassRoomInput>
+  }
+
+  export type TimetableUpdateWithWhereUniqueWithoutClassRoomInput = {
+    where: TimetableWhereUniqueInput
+    data: XOR<TimetableUpdateWithoutClassRoomInput, TimetableUncheckedUpdateWithoutClassRoomInput>
+  }
+
+  export type TimetableUpdateManyWithWhereWithoutClassRoomInput = {
+    where: TimetableScalarWhereInput
+    data: XOR<TimetableUpdateManyMutationInput, TimetableUncheckedUpdateManyWithoutClassRoomInput>
+  }
+
+  export type TimetableCreateManyTeacherInput = {
+    id?: number
+    classRoomId: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    status?: $Enums.TimetableStatus
+    subject?: $Enums.TimeTableSubjects
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TimetableUpdateWithoutTeacherInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumTimetableStatusFieldUpdateOperationsInput | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFieldUpdateOperationsInput | $Enums.TimeTableSubjects
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    classRoom?: ClassRoomUpdateOneRequiredWithoutTimetablesNestedInput
+  }
+
+  export type TimetableUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    classRoomId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumTimetableStatusFieldUpdateOperationsInput | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFieldUpdateOperationsInput | $Enums.TimeTableSubjects
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimetableUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    classRoomId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumTimetableStatusFieldUpdateOperationsInput | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFieldUpdateOperationsInput | $Enums.TimeTableSubjects
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimetableCreateManyClassRoomInput = {
+    id?: number
+    teacherId: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    status?: $Enums.TimetableStatus
+    subject?: $Enums.TimeTableSubjects
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TimetableUpdateWithoutClassRoomInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumTimetableStatusFieldUpdateOperationsInput | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFieldUpdateOperationsInput | $Enums.TimeTableSubjects
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teacher?: TeacherUpdateOneRequiredWithoutTimetablesNestedInput
+  }
+
+  export type TimetableUncheckedUpdateWithoutClassRoomInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumTimetableStatusFieldUpdateOperationsInput | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFieldUpdateOperationsInput | $Enums.TimeTableSubjects
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TimetableUncheckedUpdateManyWithoutClassRoomInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    status?: EnumTimetableStatusFieldUpdateOperationsInput | $Enums.TimetableStatus
+    subject?: EnumTimeTableSubjectsFieldUpdateOperationsInput | $Enums.TimeTableSubjects
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
