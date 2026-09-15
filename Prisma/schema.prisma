@@ -1,0 +1,179 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}
+
+model adminlogin {
+  id       Int    @id @default(autoincrement())
+  name     String?
+  email    String @unique
+  password String
+}
+
+enum TimetableStatus {
+  SCHEDULED
+  RESCHEDULED
+  CANCELLED
+  COMPLETED
+}
+
+enum TimeTableSubjects {
+Physics
+English
+Math
+Urdu
+Computer
+}
+
+model Timetable {
+  id Int @id @default(autoincrement())
+
+  teacherId Int
+  classRoomId Int
+
+  title String
+  date DateTime
+
+  startTime String
+  endTime String
+
+  
+  status TimetableStatus @default(SCHEDULED)
+  subject TimeTableSubjects@default(Physics)
+
+  notes String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  
+
+  @@index([teacherId])
+  @@index([classRoomId])
+  @@index([date])
+}
+model Teacher {
+  id Int @id @default(autoincrement())
+
+  name String
+  email String @unique
+
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model ClassRoom {
+  id Int @id @default(autoincrement())
+
+  name String
+  section String?
+
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+
+model announcement {
+  id Int @id @default(autoincrement())
+  title String
+  date String
+  time String
+  message String 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+
+model quote {
+  id Int @id @default(autoincrement())
+   title String
+   date String
+   time String
+   quote String
+   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum occuption {
+STUDENT
+TEACHER
+PARENT  
+}
+
+model addStudent {
+ id Int @id @default(autoincrement())
+  name String 
+  email String @unique
+   phoneNo String
+   enrollin String
+   guardianName String
+   guardianEmail String
+   guardianPhone String
+   password String
+   confirmPassword String
+  
+  role occuption @default(STUDENT)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+
+}
+
+
+model addParent {
+ 
+ id Int @id @default(autoincrement())
+ name String
+ email String @unique
+ password String
+ confirmPassword String
+
+ role occuption @default(PARENT)
+}
+
+model addTeacher {
+  id Int @id @default(autoincrement())
+  
+  name String
+  email String @unique
+  phone String
+  qualification String
+  password String
+  confirmPassword String
+   image String
+
+   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+
+model createNewClass {
+  id Int @id @default(autoincrement())
+  className String
+  teachers String[]
+  students String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}

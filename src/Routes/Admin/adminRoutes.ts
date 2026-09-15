@@ -1,0 +1,62 @@
+import express from 'express'
+import { addParent, addStudent, addTeacher, Adminlogin, cancelTimetable, createAnnouncement, 
+    createQuote, createTimeTable, deleteannouncement, deleteParent, deleteQuote, deleteStudent, deleteTeacher, deleteTimetable, findAnouncementById, 
+    getAllAnnouncements, getAllparents, getAllQuotes, getAllStudents, getAllTeachers, getSingleParent, getSingleQuote, getSingleStudent, getTeacherById, getTimetableById, getTimetables, 
+    updateAnnouncement,updateparent,  updateQuote,updateStudent,  updateTeacher } from '../../Controllers/Admin/adminController'
+
+
+const adminRouter = express.Router()
+
+
+adminRouter.post('/login' , Adminlogin)
+
+
+// ===========TABLE ROUTES =============
+
+adminRouter.post("/createtable", createTimeTable);
+adminRouter.get("/getalltable", getTimetables);
+adminRouter.get("/:id", getTimetableById);
+adminRouter.put("/:id/cancel", cancelTimetable);
+adminRouter.delete("/:id", deleteTimetable);
+
+// ===========ANNOUNCEMENTS ROUTES =============
+
+adminRouter.post('/createAnnouncement' , createAnnouncement);
+adminRouter.get('/getAllAnnouncements' , getAllAnnouncements)
+adminRouter.get('/getsingleannouncement' , findAnouncementById)
+adminRouter.delete('/deleteAnnouncement' , deleteannouncement)
+adminRouter.put('/updateAnnouncement' , updateAnnouncement)
+
+
+// =========== QUOTES ROUTES =============
+adminRouter.post('/createquote' , createQuote)
+adminRouter.get('/getallquote' , getAllQuotes)
+adminRouter.get('/getsinglequote' , getSingleQuote)
+adminRouter.delete('/deletequote' , deleteQuote)
+adminRouter.put('/updatequote' , updateQuote)
+
+//============= ADD STUDENT ROUTES =============
+adminRouter.post('/addstudent' , addStudent)
+adminRouter.get('/getallstudents' , getAllStudents)
+adminRouter.get('/getsinglestudent' , getSingleStudent)
+adminRouter.delete('/deletestudent' , deleteStudent)
+adminRouter.put('/updatestudent' , updateStudent)
+
+
+//========= ADD TEACHER ROUTES ========== 
+adminRouter.post('/addteacher' , addTeacher)
+adminRouter.get('/getallteachers' , getAllTeachers)
+adminRouter.get('/getsinglteacher' , getTeacherById)
+adminRouter.delete('/deleteteacher' , deleteTeacher)
+adminRouter.put('/updateteacher' , updateTeacher)
+
+//========= ADD PARENT ROUTES ============
+adminRouter.post('/addparent' , addParent)
+adminRouter.get('/getallparents' , getAllparents)
+adminRouter.get('/getsinglparent' , getSingleParent)
+adminRouter.delete('/deleteparent' , deleteParent)
+adminRouter.put('/updateparent' , updateparent)
+
+
+
+export default adminRouter
