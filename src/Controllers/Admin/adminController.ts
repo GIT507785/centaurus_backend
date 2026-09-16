@@ -665,10 +665,10 @@ export const addStudent = async(req:Request , res:Response)=>{
     try {
         
         const {name , email , phoneNo , enrollin ,  guardianName ,guardianEmail ,
-        guardianPhone , password ,confirmPassword , role}  = req.body
+        guardianPhone , password ,confirmPassword }  = req.body
         
         if(!name || !email || phoneNo || !enrollin || !guardianName || !guardianEmail
-            || !guardianPhone || !password || !confirmPassword || !role
+            || !guardianPhone || !password || !confirmPassword 
         ){
         return res.json({success:false , message:"Missing Require fieds"})        
         }
@@ -690,7 +690,6 @@ export const addStudent = async(req:Request , res:Response)=>{
                 guardianPhone,
                 password,confirmPassword,
                 enrollin,
-                role:"STUDENT"
             }
         })
 
