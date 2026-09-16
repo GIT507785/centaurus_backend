@@ -13,6 +13,9 @@ app.use('/api/admin', adminRouter)
 
 const PORT  = 4000
 
+app.get('/' , (req: Request, res: Response)=>{
+ res.send("server is running")
+})
 
 app.get("/test", (req: Request, res: Response) => {
   console.log("🔥 TEST ROUTE HIT");
