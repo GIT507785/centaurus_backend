@@ -395,11 +395,7 @@ export const createAnnouncement = async (req:Request , res:Response) =>{
  try {
     const { title , date , time , message } = req.body
        
-      if(!title || !date || !time || !message){ 
-        return res.json({success:false , 
-            messgae:"All fields are required"
-        })
-      }
+      
        const announcement = await prisma.announcement.create({
         data:{
             title ,
@@ -533,11 +529,6 @@ export const createQuote = async(req:Request , res:Response)=>{
  try {
     
     const { title , date ,time , quote  } = req.body   
-
-     if(!title || !date || time  || !quote){
-       return res.json({success:false , message:"Missing Require fieds"})
-     }
-
 
       const createQuote = await prisma.quote.create({
         data:{
