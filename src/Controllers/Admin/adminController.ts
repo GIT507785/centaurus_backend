@@ -1227,3 +1227,26 @@ export const getDashboardData = async (req:Request , res:Response)=>{
     }
 
 }
+
+
+export const getAllUsersData = async (req:Request , res:Response)=>{
+  try {
+    
+    const [teachersResult , studentResult , parentResult] = await Promise.allSettled([
+      prisma.addTeacher.findMany({orderBy:{id:"asc"}}),
+      prisma.addStudent.findMany({orderBy:{id:"asc"}}),
+      prisma.addParent.findMany({orderBy:{id:"asc"}})
+    ])  
+
+    return res.status(200).json({
+      success:true ,
+      teachersResult,
+      studentResult ,
+      parentResult
+    })
+
+  } catch (error:any) {
+    console.log(error)
+    return res.json({success:false , message:error.message})
+  }
+}
