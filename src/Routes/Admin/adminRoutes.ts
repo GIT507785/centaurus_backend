@@ -15,8 +15,8 @@ adminRouter.post('/login' , Adminlogin)
 
 adminRouter.post("/createtable", createTimeTable);
 adminRouter.get("/getalltable", getTimetables);
-adminRouter.get("/:id", getTimetableById);
-adminRouter.put("/:id/cancel", cancelTimetable);
+adminRouter.get("table/:id", getTimetableById);
+adminRouter.put("table/:id/cancel", cancelTimetable);
 adminRouter.delete("/:id", deleteTimetable);
 
 // ===========ANNOUNCEMENTS ROUTES =============
