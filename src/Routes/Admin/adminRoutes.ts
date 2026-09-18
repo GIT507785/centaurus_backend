@@ -24,16 +24,16 @@ adminRouter.delete("/:id", deleteTimetable);
 adminRouter.post('/createAnnouncement' , createAnnouncement);
 adminRouter.get('/getAllAnnouncements' , getAllAnnouncements)
 adminRouter.get('/getsingleannouncement' , findAnouncementById)
-adminRouter.delete('/deleteAnnouncement' , deleteannouncement)
-adminRouter.put('/updateAnnouncement' , updateAnnouncement)
+adminRouter.delete('/deleteAnnouncement/:id' , deleteannouncement)
+adminRouter.put('/updateAnnouncement/:id' , updateAnnouncement)
 
 
 // =========== QUOTES ROUTES =============
 adminRouter.post('/createquote' , createQuote)
 adminRouter.get('/getallquote' , getAllQuotes)
 adminRouter.get('/getsinglequote' , getSingleQuote)
-adminRouter.delete('/deletequote' , deleteQuote)
-adminRouter.put('/updatequote' , updateQuote)
+adminRouter.delete('/deletequote/:id' , deleteQuote)
+adminRouter.put('/updatequote/:id' , updateQuote)
 
 //============= ADD STUDENT ROUTES =============
 adminRouter.post('/addstudent' , addStudent)
