@@ -1,7 +1,7 @@
 import express from 'express'
 import { addParent, addStudent, addTeacher, Adminlogin, cancelTimetable, createAnnouncement, 
     createQuote, createTimeTable, deleteannouncement, deleteParent, deleteQuote, deleteStudent, deleteTeacher, deleteTimetable, findAnouncementById, 
-    getAllAnnouncements, getAllparents, getAllQuotes, getAllStudents, getAllTeachers, getAllUsersData, getSingleParent, getSingleQuote, getSingleStudent, getTeacherById, getTimetableById, getTimetables, 
+    getAllAnnouncements, getAllparents, getAllQuotes, getAllStudents, getAllTeachers, getAllUsersData, getDashboardData, getSingleParent, getSingleQuote, getSingleStudent, getTeacherById, getTimetableById, getTimetables, 
     updateAnnouncement,updateparent,  updateQuote,updateStudent,  updateTeacher } from '../../Controllers/Admin/adminController'
 
 
@@ -10,6 +10,7 @@ const adminRouter = express.Router()
 
 adminRouter.post('/login' , Adminlogin)
 adminRouter.get("/allusersdata" , getAllUsersData)
+adminRouter.get("/getallDashboardData" , getDashboardData)
 
 // ===========TABLE ROUTES =============
 
