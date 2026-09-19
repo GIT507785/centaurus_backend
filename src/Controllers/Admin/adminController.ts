@@ -816,7 +816,6 @@ export const updateStudent = async(req:Request , res:Response)=>{
 
     } catch (error:any) {
         
-        
      console.log(error)
     return res.json({success:false , message:error.message}) 
     }
@@ -1203,13 +1202,27 @@ export const getDashboardData = async (req:Request , res:Response)=>{
 
     try {
         
-        const [students , teachers, parents] = await Promise.all([
+        const [toatlStudents,totalTeachers,totalClasses, totalParents ,
+              totalTimetables, totalAnnouncements , totalQuotes 
+        ] = await Promise.all([
             prisma.addStudent.count(),
             prisma.addTeacher.count(),
-            prisma.addParent.count()
+            prisma.addParent.count(),
+            prisma.createNewClass.count(),
+            prisma.timetable.count(),
+            prisma.announcement.count(),
+            prisma.quote.count()
         ]) 
 
-        return res.json({success:true , students, teachers, parents})
+        return res.json({success:true, data:{
+          toatlStudents,
+          totalAnnouncements,
+          totalClasses,
+          totalTeachers,
+          totalParents,
+          totalTimetables,
+          totalQuotes
+        }})
         
     } catch (error:any) {
         

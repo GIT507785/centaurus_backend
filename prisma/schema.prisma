@@ -178,3 +178,21 @@ model createNewClass {
   updatedAt DateTime @updatedAt
 
 }
+
+
+model dashboard {
+  id Int @id @default(autoincrement())
+
+   toatlStudents Int @default(0) 
+   totalTeachers Int @default(0)
+   totalClasses Int @default(0)
+   totalParents Int @default(0)
+
+      totalTimetables    Int @default(0)
+      totalAnnouncements Int @default(0)
+      totalQuotes        Int @default(0)
+
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+
+}
