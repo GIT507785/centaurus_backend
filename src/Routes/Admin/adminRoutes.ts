@@ -8,7 +8,7 @@ import { addParent, addStudent, addTeacher, Adminlogin, cancelTimetable, createA
 const adminRouter = express.Router()
 
 
-adminRouter.post('/login' , Adminlogin)
+adminRouter.post('/adminlogin' , Adminlogin)
 adminRouter.get("/allusersdata" , getAllUsersData)
 adminRouter.get("/getallDashboardData" , getDashboardData)
 
