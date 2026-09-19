@@ -2,34 +2,27 @@ import { Request , Response } from "express"
 import { prisma } from "../../Config/db"
 import jwt from "jsonwebtoken"
 import 'dotenv/config'
-import { queryObjects } from "v8"
 import cloudnary from "../../Config/Cloudinary"
 
-export const Adminlogin = async (req:Request , res:Response)=>{
-try {
-    
-     const {email , password} = req.body
-      
-     if(email !== process.env.ADMIN_EMAIL  || password !== process.env.ADMIN_PASSWORD){
-        return res.json({success:false, message:"Invalid Credentials"})
-     }
+export const Adminlogin = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
 
-     console.log(process.env.ADMIN_PASSWORD || process.env.ADMIN_EMAIL)
+    if (email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD) {
+      return res.status(401).json({ success: false, message: "Invalid Credentials" });
+    }
 
-   const user = await prisma.adminlogin.findUnique({where:{
-     email:email
-   }})      
-    
-   const token = jwt.sign({
-    id:user?.id   
-   } , process.env.JWT_SECRET as string , {expiresIn:'3d'})
+    const token = jwt.sign(
+      { role: "admin", email },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "3d" }
+    );
 
-   res.json({success:true , user , token})
-
-} catch (error:any) {
-    res.json({success:false , message:error.message})
-}
-}
+    res.status(200).json({ success: true, message: "Login successful", user: { email }, token });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 
 export const createTimeTable = async(req:Request , res:Response)=>{
